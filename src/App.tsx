@@ -13,6 +13,9 @@ import Checkout from "./pages/Checkout";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Shipping from "./pages/Shipping";
+import FAQ from "./pages/FAQ";
+import CookiePolicy from "./pages/CookiePolicy";
+import LegalPolicy from "./pages/LegalPolicy";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -34,6 +37,9 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/shipping" element={<Shipping />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/legal" element={<LegalPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </CartProvider>

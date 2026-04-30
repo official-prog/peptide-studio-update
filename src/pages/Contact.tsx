@@ -36,7 +36,7 @@ const Contact = () => {
         <div className="lg:col-span-1 space-y-6">
           {[
             { icon: Mail, t: "Email", v: "support@renovopeptides.com", href: "mailto:support@renovopeptides.com" },
-            { icon: MapPin, t: "Location", v: "United Kingdom" },
+            { icon: MapPin, t: "Location", v: "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ" },
             { icon: Clock, t: "Response time", v: "Within 24 hours, Mon–Fri" },
           ].map(({ icon: I, t, v, href }) => (
             <div key={t} className="rounded-lg border border-border bg-card p-5">
@@ -50,32 +50,38 @@ const Contact = () => {
             </div>
           ))}
           <div className="rounded-lg border border-border bg-surface p-5 text-xs text-muted-foreground">
-            <strong className="text-foreground block mb-1">Renovo Peptides UK</strong>
-            Registered in England & Wales · Company No. 16952545
+            <strong className="text-foreground block mb-1">Renovo Research Ltd</strong>
+            Trading as Renovo Peptides · Company No. 16952545
           </div>
         </div>
 
         <form onSubmit={onSubmit} className="lg:col-span-2 rounded-lg border border-border bg-card p-6 sm:p-8 space-y-5">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" required className="mt-2" placeholder="Dr. Jane Smith" />
+              <Label htmlFor="firstName">First Name</Label>
+              <Input id="firstName" required className="mt-2" placeholder="Jane" />
             </div>
+            <div>
+              <Label htmlFor="lastName">Last Name</Label>
+              <Input id="lastName" required className="mt-2" placeholder="Smith" />
+            </div>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" required className="mt-2" placeholder="you@lab.com" />
             </div>
+            <div>
+              <Label htmlFor="phone">Phone</Label>
+              <Input id="phone" type="tel" className="mt-2" placeholder="+44 7700 000000" />
+            </div>
           </div>
           <div>
-            <Label htmlFor="subject">Subject</Label>
-            <Input id="subject" required className="mt-2" placeholder="Wholesale enquiry, batch documentation, etc." />
-          </div>
-          <div>
-            <Label htmlFor="message">Message</Label>
+            <Label htmlFor="message">Messages</Label>
             <Textarea id="message" required rows={6} className="mt-2" placeholder="How can we help?" />
           </div>
           <Button type="submit" size="lg" disabled={loading} className="bg-accent text-accent-foreground hover:bg-accent/90">
-            {loading ? "Sending…" : "Send message"}
+            {loading ? "Sending…" : "Send"}
           </Button>
         </form>
       </section>

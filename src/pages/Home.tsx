@@ -8,7 +8,8 @@ import heroVial from "@/assets/hero-vial.jpg";
 import molecule from "@/assets/molecule-pattern.jpg";
 
 const Home = () => {
-  const featured = products.slice(0, 4);
+  const featuredSlugs = ["bpc-157-10mg", "tb-500-5mg", "semax-10mg", "thymosin-alpha-1-5mg"];
+  const featured = featuredSlugs.map((s) => products.find((p) => p.slug === s)!).filter(Boolean);
 
   return (
     <SiteLayout>
