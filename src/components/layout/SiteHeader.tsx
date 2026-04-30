@@ -149,15 +149,13 @@ export const SiteHeader = () => {
           </nav>
 
           <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={() => setLoginOpen(true)}
-              className="hidden sm:flex items-center gap-1.5 text-sm text-foreground/80 hover:text-accent"
+              className="hidden sm:flex items-center gap-1.5 text-sm text-foreground/80 hover:text-accent transition-colors px-2 py-1 rounded-md hover:bg-muted"
             >
               <User className="h-4 w-4" />
               <span className="hidden lg:inline">Sign In</span>
-            </Button>
+            </button>
             <Button variant="ghost" size="icon" onClick={() => setOpen(true)} aria-label="Open cart" className="relative">
               <ShoppingBag className="h-5 w-5" />
               {count > 0 && (
