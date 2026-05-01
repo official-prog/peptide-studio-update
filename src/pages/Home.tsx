@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { products, categories } from "@/data/products";
-import { ArrowRight, ShieldCheck, FlaskConical, Microscope, Award, Truck, Lock, Star } from "lucide-react";
+import { ArrowRight, ShieldCheck, FlaskConical, Microscope, Award, Truck, Lock, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import heroVial from "@/assets/hero-vial.jpg";
 import molecule from "@/assets/molecule-pattern.jpg";
 
@@ -60,6 +60,66 @@ const useParallax = (speed = 0.25) => {
     return () => window.removeEventListener("scroll", tick);
   }, [speed]);
   return ref;
+};
+
+/* ── Category Carousel ── */
+const CatCarousel = () => {
+  const [active, setActive] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval>>();
+
+  const goTo = (idx: number) => setActive(idx);
+
+  const prev = () => goTo(active === 0 ? categories.length - 1 : active - 1);
+  const next = () => goTo(active === categories.length - 1 ? 0 : active + 1);
+
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => setActive(i => (i + 1) % categories.length), 3200);
+  };
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => setActive(i => (i + 1) % categories.length), 3200);
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[active] as HTMLElement;
+    if (!card) return;
+    track.scrollTo({ left: card.offsetLeft - 16, behavior: "smooth" });
+  }, [active]);
+
+  const handlePrev = () => { prev(); resetTimer(); };
+  const handleNext = () => { next(); resetTimer(); };
+
+  return (
+    <div className="cat-carousel">
+      <button className="cat-carousel-btn" onClick={handlePrev} aria-label="Previous">
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <div ref={trackRef} className="cat-carousel-track">
+        {categories.map((c, i) => (
+          <Link
+            key={c}
+            to={`/shop?category=${c}`}
+            className={`cat-card cat-carousel-item${active === i ? " cat-card--active" : ""}`}
+            onClick={() => { goTo(i); resetTimer(); }}
+          >
+            <div className="cat-card-shine" aria-hidden />
+            <span className="cat-card-num">0{i + 1}</span>
+            <h3 className="cat-card-title">{c}</h3>
+            <p className="cat-card-count">{products.filter(p => p.category === c).length} peptides</p>
+            <ArrowRight className="cat-card-arrow" />
+          </Link>
+        ))}
+      </div>
+      <button className="cat-carousel-btn" onClick={handleNext} aria-label="Next">
+        <ChevronRight className="h-5 w-5" />
+      </button>
+    </div>
+  );
 };
 
 /* ── Floating orbs (hero bg) ── */
@@ -229,19 +289,7 @@ const Home = () => {
           </Link>
         </div>
 
-        <StaggerGrid className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((c, i) => (
-            <Link key={c} to={`/shop?category=${c}`} className="cat-card stagger-item">
-              <div className="cat-card-shine" aria-hidden />
-              <span className="cat-card-num">0{i + 1}</span>
-              <h3 className="cat-card-title">{c}</h3>
-              <p className="cat-card-count">
-                {products.filter((p) => p.category === c).length} peptides
-              </p>
-              <ArrowRight className="cat-card-arrow" />
-            </Link>
-          ))}
-        </StaggerGrid>
+        <CatCarousel />
       </section>
 
       {/* ══════════════════ FEATURED PRODUCTS ══════════════════ */}
