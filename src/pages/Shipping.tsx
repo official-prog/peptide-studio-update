@@ -5,8 +5,8 @@ const Shipping = () => (
     <p>All orders are processed Monday through Friday, excluding public holidays. Orders are dispatched the following working day after payment is confirmed.</p>
 
     <h2>Shipping options</h2>
-    <p><strong>Standard Shipping</strong> — 3–7 business days with tracking included.</p>
-    <p><strong>Express Shipping</strong> — 1–2 business days with 24-hour tracked delivery.</p>
+    <p><strong>Standard Shipping</strong>: 3–7 business days with tracking included.</p>
+    <p><strong>Express Shipping</strong>: 1–2 business days with 24-hour tracked delivery.</p>
 
     <h2>Order tracking</h2>
     <p>All orders include a tracking number. You will receive an automatic email notification with your tracking details once your order is dispatched. Please allow 12–24 hours for tracking information to update.</p>

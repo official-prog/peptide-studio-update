@@ -4,6 +4,7 @@ import { getProduct, products } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { formatGBP, useCart } from "@/context/CartContext";
 import { ProductCard } from "@/components/shop/ProductCard";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { ShieldCheck, FileText, Truck, Lock, Minus, Plus, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
@@ -47,10 +48,11 @@ const ProductDetail = () => {
 
       <section className="container-wide py-10 grid gap-12 lg:grid-cols-2">
         <div className="relative">
-          <div className="overflow-hidden rounded-xl border border-border bg-surface aspect-square">
-            <img src={product.image} alt={`${product.name} ${product.size}`} className="h-full w-full object-cover" />
-          </div>
-          <span className="absolute left-4 top-4 rounded-full bg-background/90 backdrop-blur px-3 py-1 text-[10px] font-mono uppercase tracking-widest">
+          <ZoomableImage
+            src={product.image}
+            alt={`${product.name} ${product.size}`}
+          />
+          <span className="absolute left-4 top-4 z-10 rounded-full bg-background/90 backdrop-blur px-3 py-1 text-[10px] font-mono uppercase tracking-widest">
             {product.category}
           </span>
         </div>

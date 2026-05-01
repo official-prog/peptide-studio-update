@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { CartDrawer } from "./CartDrawer";
+import { BackToTop } from "@/components/BackToTop";
 
 export const SiteLayout = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation();
@@ -42,6 +43,7 @@ export const SiteLayout = ({ children }: { children: ReactNode }) => {
       </main>
       <SiteFooter />
       <CartDrawer />
+      <BackToTop />
     </div>
   );
 };

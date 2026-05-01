@@ -8,13 +8,13 @@ import { Lock, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 
 const Checkout = () => {
-  const { items, subtotal, clear } = useCart();
+  const { items, subtotal } = useCart();
   const shipping = subtotal >= 150 || subtotal === 0 ? 0 : 6.95;
   const total = subtotal + shipping;
 
   const onPay = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.info("Stripe checkout will be wired up next — this is a UI preview.");
+    toast.info("Stripe checkout will be wired up next. This is a UI preview.");
   };
 
   if (items.length === 0) {

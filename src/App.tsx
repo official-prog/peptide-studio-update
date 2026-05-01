@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/context/CartContext";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { AgeVerificationModal } from "@/components/AgeVerificationModal";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
@@ -24,6 +26,8 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <AgeVerificationModal />
+      <ScrollProgress />
       <Toaster />
       <Sonner />
       <BrowserRouter>
